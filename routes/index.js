@@ -1,47 +1,29 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+const db = require('../db/queries');
 
-// Sample messages array
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Garcia",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
-
-// Index route
-router.get("/", (req, res) => {
-  res.render("index", { title: "Mini Messageboard", messages: messages });
+// Index route - get all messages from database
+router.get('/', async (req, res) => {
+  const messages = await db.getAllMessages();
+  res.render('index', { title: "Mini Messageboard", messages: messages });
 });
 
+// GET route for the form
 router.get('/new', (req, res) => {
   res.render('form', { title: "New Message" });
 });
 
 // POST route to handle form submission
-router.post('/new', (req, res) => {
-  const messageUser = req.body.messageUser;
-  const messageText = req.body.messageText;
-  
-  messages.push({ 
-    text: messageText, 
-    user: messageUser, 
-    added: new Date() 
-  });
-  
+router.post('/new', async (req, res) => {
+  const { messageUser, messageText } = req.body;
+  await db.insertMessage(messageUser, messageText);
   res.redirect('/');
 });
 
 // GET route for individual message
-router.get('/message/:id', (req, res) => {
+router.get('/message/:id', async (req, res) => {
   const messageId = req.params.id;
-  const message = messages[messageId];
+  const message = await db.getMessageById(messageId);
   
   if (message) {
     res.render('message', { title: "Message Details", message: message });

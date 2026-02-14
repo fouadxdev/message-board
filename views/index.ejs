@@ -62,13 +62,13 @@
   
   <a href="/new" class="add-message-link">New Message</a>
 
-  <% messages.forEach(function(message, index) { %>
-    <div class="message">
-      <p><%= message.text %></p>
-      <p class="message-user">- <%= message.user %></p>
-      <p class="message-date"><%= message.added.toLocaleString() %></p>
-      <a href="/message/<%= index %>" class="open-link">Open</a>
-    </div>
-  <% }); %>
+  <% messages.forEach(function(message) { %>
+  <div class="message">
+    <p><%= message.message_text %></p>
+    <p class="message-user">- <%= message.username %></p>
+    <p class="message-date"><%= new Date(message.added).toLocaleString() %></p>
+    <a href="/message/<%= message.id %>" class="open-link">Open</a>
+  </div>
+<% }); %>
 </body>
 </html>

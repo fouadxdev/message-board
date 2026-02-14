@@ -54,9 +54,9 @@
   <h1><%= title %></h1>
   
   <div class="message-detail">
-    <p class="message-text"><%= message.text %></p>
-    <p class="message-user">Posted by: <%= message.user %></p>
-    <p class="message-date">Date: <%= message.added.toLocaleString() %></p>
-  </div>
+  <p class="message-text"><%= message.message_text %></p>
+  <p class="message-user">Posted by: <%= message.username %></p>
+  <p class="message-date">Date: <%= new Date(message.added).toLocaleString() %></p>
+</div>
 </body>
 </html>
