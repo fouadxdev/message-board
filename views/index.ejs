@@ -4,6 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  
+  <form action="/" method="GET" style="margin: 20px 0;">
+  <input 
+    type="text" 
+    name="search" 
+    placeholder="Search by username..." 
+    value="<%= searchTerm %>"
+    style="padding: 8px; width: 300px; border: 1px solid #ddd; border-radius: 3px;"
+  >
+  <button 
+    type="submit"
+    style="padding: 8px 20px; background-color: #28a745; color: white; border: none; border-radius: 3px; cursor: pointer;"
+  >
+    Search
+  </button>
+  <% if (searchTerm) { %>
+    <a href="/" style="margin-left: 10px; color: #dc3545;">Clear</a>
+  <% } %>
+</form>
+
+<a href="/new" class="add-message-link">New Message</a>
+  
+
   <style>
     body {
       font-family: Arial, sans-serif;

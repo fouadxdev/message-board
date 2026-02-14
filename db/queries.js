@@ -24,8 +24,18 @@ async function getMessageById(id) {
   return rows[0];
 }
 
+// Search messages by username (SQL LIKE search)
+async function searchMessages(searchTerm) {
+  const { rows } = await pool.query(
+    "SELECT * FROM messages WHERE username ILIKE $1 ORDER BY added DESC",
+    [`%${searchTerm}%`]
+  );
+  return rows;
+}
+
 module.exports = {
   getAllMessages,
   insertMessage,
   getMessageById,
+  searchMessages
 };

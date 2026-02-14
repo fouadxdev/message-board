@@ -2,10 +2,22 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/queries');
 
-// Index route - get all messages from database
+// Index route - get all messages OR search
 router.get('/', async (req, res) => {
-  const messages = await db.getAllMessages();
-  res.render('index', { title: "Mini Messageboard", messages: messages });
+  const searchTerm = req.query.search;
+  
+  let messages;
+  if (searchTerm) {
+    messages = await db.searchMessages(searchTerm);
+  } else {
+    messages = await db.getAllMessages();
+  }
+  
+  res.render('index', { 
+    title: "Mini Messageboard", 
+    messages: messages,
+    searchTerm: searchTerm || ''
+  });
 });
 
 // GET route for the form
