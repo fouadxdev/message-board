@@ -33,9 +33,15 @@ async function searchMessages(searchTerm) {
   return rows;
 }
 
+// Delete all messages
+async function deleteAllMessages() {
+  await pool.query("DELETE FROM messages");
+}
+
 module.exports = {
   getAllMessages,
   insertMessage,
   getMessageById,
-  searchMessages
+  searchMessages,
+  deleteAllMessages
 };
