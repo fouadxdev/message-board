@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .message {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .message-user {
+      font-weight: bold;
+      color: #0066cc;
+    }
+    .message-date {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .add-message-link {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    .add-message-link:hover {
+        background-color: #094e94;
+    }
+    .open-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.9em;
+    }
+    .open-link:hover {
+    background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= title %></h1>
+  
+  <a href="/new" class="add-message-link">New Message</a>
+
+  <% messages.forEach(function(message, index) { %>
+    <div class="message">
+      <p><%= message.text %></p>
+      <p class="message-user">- <%= message.user %></p>
+      <p class="message-date"><%= message.added.toLocaleString() %></p>
+      <a href="/message/<%= index %>" class="open-link">Open</a>
+    </div>
+  <% }); %>
+</body>
+</html>

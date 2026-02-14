@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .message-detail {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .message-text {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .message-user {
+      font-weight: bold;
+      color: #0066cc;
+      font-size: 1.1em;
+    }
+    .message-date {
+      color: #666;
+      margin-top: 10px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .back-link:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-link">← Back to all messages</a>
+  
+  <h1><%= title %></h1>
+  
+  <div class="message-detail">
+    <p class="message-text"><%= message.text %></p>
+    <p class="message-user">Posted by: <%= message.user %></p>
+    <p class="message-date">Date: <%= message.added.toLocaleString() %></p>
+  </div>
+</body>
+</html>
